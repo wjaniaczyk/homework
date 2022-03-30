@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 import pl.wj.teai.homework.model.Product;
-import pl.wj.teai.homework.util.BigDecimalGenerator;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
@@ -15,20 +14,20 @@ import java.util.Set;
 public class ProductRepoImpl implements IProductRepo{
 
     private Set<Product> products;
-    private BigDecimalGenerator bigDecimalGenerator;
 
     @Autowired
-    public ProductRepoImpl(BigDecimalGenerator bigDecimalGenerator) {
-        this.bigDecimalGenerator = bigDecimalGenerator;
+    public ProductRepoImpl() {
         this.products = new HashSet<>();
         create5Products();
     }
 
+    @Override
     public Set<Product> getAllProducts() {
         return products;
     }
 
-    private void create5Products(){
+    @Override
+    public void create5Products(){
         BigDecimal[] prices = {
                 new BigDecimal("110.17"),
                 new BigDecimal("201.06"),
@@ -42,6 +41,7 @@ public class ProductRepoImpl implements IProductRepo{
         }
     }
 
+    @Override
     public void addProduct(Product product){
         products.add(product);
     }

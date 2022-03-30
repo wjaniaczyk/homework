@@ -9,4 +9,6 @@ public interface IProductRepo {
     Set<Product> getAllProducts();
 
     void addProduct(Product product);
+
+    void create5Products();
 }

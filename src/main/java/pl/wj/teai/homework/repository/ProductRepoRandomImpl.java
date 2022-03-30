@@ -18,14 +18,16 @@ public class ProductRepoRandomImpl implements IProductRepo{
     public ProductRepoRandomImpl(BigDecimalGenerator bigDecimalGenerator) {
         this.bigDecimalGenerator = bigDecimalGenerator;
         this.products = new HashSet<>();
-        create5ProductsWithRandomPrices();
+        create5Products();
     }
 
+    @Override
     public Set<Product> getAllProducts() {
         return products;
     }
 
-    private void create5ProductsWithRandomPrices(){
+    @Override
+    public void create5Products(){
         Product product;
         for (int i = 1; i < 6; i++) {
             product = new Product(i, "product_" + i, bigDecimalGenerator.getRandomInGivenRange());
@@ -33,6 +35,7 @@ public class ProductRepoRandomImpl implements IProductRepo{
         }
     }
 
+    @Override
     public void addProduct(Product product){
         products.add(product);
     }

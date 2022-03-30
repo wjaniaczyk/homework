@@ -1,13 +1,10 @@
 package pl.wj.teai.homework.service;
 
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.annotation.Profile;
-import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 import pl.wj.teai.homework.repository.IProductRepo;
-import pl.wj.teai.homework.repository.ProductRepoImpl;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -19,11 +16,11 @@ public class ShopPlus extends ShopStart implements IShop {
     @Value("${shop-info.vat}")
     private int vat;
 
+    @Autowired
     public ShopPlus(IProductRepo iProductRepo) {
         super(iProductRepo);
     }
 
-    @EventListener(ApplicationReadyEvent.class)
     @Override
     public void showInfo() {
         super.showInfo();
